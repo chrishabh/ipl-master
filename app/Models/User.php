@@ -6,11 +6,12 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\DB;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -41,4 +42,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function register_user($input)
+    {
+        $id = DB::table('users')->insertGetId($input);
+        return $id;
+    }
+
+    public static function getUserByEmail($email)
+    {
+        return User::where('email', $email)->first();
+    }
+
+    public static function getUserById($user_id)
+    {
+        return User::where('id', $user_id)->first();
+    }
 }
