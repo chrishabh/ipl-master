@@ -32,10 +32,10 @@ class ResponseMacros
             $response['message'] = $exception->getMessage();
             // $response['data'] = (object)[];
             if(is_array($errors) && !empty($errors) && $error_code==1120){
-                pp('1');
+           
                 $response['message'] =$response['message'].='[#SPLIT]'.$errors['link'];
             }else{
-                pp('2');
+             
                 if(is_array($errors) && !empty($errors)){
                     $response['errors'] = $errors;
                 }
