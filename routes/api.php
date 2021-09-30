@@ -26,6 +26,11 @@ use Illuminate\Support\Facades\Route;
                 Route::post('get-block-details','ConstructionDetailsController@getBlockDetails');
                 Route::post('get-apartment-details','ConstructionDetailsController@getApartmentDetails');
                 Route::post('get-construction-details','ConstructionDetailsController@getConstructionDetails');
+                Route::post('get-description-work','ConstructionDetailsController@getDescriptionWork');
+
+                // wages booking
+                Route::post('book-wages','WagesBookingController@bookWages');
+                Route::post('get-wages','WagesBookingController@getWages');
            // });
             
         });

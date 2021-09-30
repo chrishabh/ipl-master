@@ -44,4 +44,9 @@ class ConstructionDetailsServices{
         return ConstructionDetails::getConstructionDetails($request);
     }
 
+    public static function getDescriptionWork($request)
+    {
+        return ConstructionDetails::getDescriptionWork($request);
+    }
+
 }
