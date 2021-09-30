@@ -22,7 +22,10 @@ use Illuminate\Support\Facades\Route;
 
         Route::group(['namespace' => 'Api\Auth'], function () {
             Route::group(['middleware' => ['auth:api']], function () {
-                Route::get('test','UserController@test');
+                Route::post('get-project-details','ConstructionDetailsController@getProjectDetails');
+                Route::post('get-block-details','ConstructionDetailsController@getBlockDetails');
+                Route::post('get-apartment-details','ConstructionDetailsController@getApartmentDetails');
+                Route::post('get-construction-details','ConstructionDetailsController@getConstructionDetails');
             });
             
         });

@@ -61,4 +61,17 @@ if (! function_exists('envparam')) {
         return $array;
     }
 
+	function group_by($key, $data) {
+        $result = array();
+        foreach($data as &$val) {
+            $val = (array)$val;
+            if(array_key_exists($key, $val)){
+                $result[$val[$key]][] = $val;
+            }else{
+                $result[""][] = $val;
+            }
+        }
+        return $result;
+    }
+
 ?>
