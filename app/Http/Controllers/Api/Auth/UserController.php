@@ -18,7 +18,7 @@ class UserController extends Controller
 
     public static function userSignUp(SignUpFormRequest $request)
     {
-        // $requestData = $request->validated();
+         $requestData = $request->validated();
 
             $user = new UserServices();
             $user->register($request);
@@ -26,12 +26,12 @@ class UserController extends Controller
 		return  response()->data([],'Registration Success');
     }
 
-    public static function userLogin(HttpFoundationRequest  $request)
+    public static function userLogin(LoginFormRequest  $request)
     {
 
-        //$requestData = $request->validated();
+        $requestData = $request->validated();
         $user = new UserServices();
-        $data = $user->login($request['request']);
+        $data = $user->login($request);
         return  response()->data(['user'=>$data]);
 
     }
