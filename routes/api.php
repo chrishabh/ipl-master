@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Route;
                 // wages booking
                 Route::post('book-wages','WagesBookingController@bookWages');
                 Route::post('get-wages','WagesBookingController@getWages');
+                Route::post('get-wages-excel','WagesBookingController@getWagesExcel');
            // });
             
         });
