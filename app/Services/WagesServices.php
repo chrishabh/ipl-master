@@ -10,6 +10,7 @@ class WagesServices{
     public static function bookWages($request)
     {
        WagesDetails::bookWages($request);
+       ConstructionDetails::addWagesBookValue($request);
     }
 
     public static function getWages($request)

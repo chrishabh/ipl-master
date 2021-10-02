@@ -24,12 +24,14 @@ class BookWagesFormRequest extends FormRequest
     public function rules()
     {
         return [
+            'project_id' => 'required',
             'pay_to' => 'required',
             'trade' => 'required',
             'level' => 'required',
             'block_id' => 'required',
             'plot_or_room' => 'required',
             'description_work' => 'required',
+            'main_description_id' => 'required',
             'sum' => 'required',
         ];
     }
