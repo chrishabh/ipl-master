@@ -22,7 +22,7 @@ class videosDetails extends Model
 
     public static function downloadVideos($id)
     {
-        return videosDetails::select('video_path')->whereNull('deleted_at')->where('id',$id);
+        return videosDetails::select('video_path')->whereNull('deleted_at')->where('id',$id)->first();
     }
 
     public static function getVideoList($request)
