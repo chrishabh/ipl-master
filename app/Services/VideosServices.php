@@ -11,9 +11,9 @@ class VideosServices{
     {
         $user_id = 5;
         if (isset($_FILES) && !empty($_FILES['request']['name']['file'])) {
-            $dir_name =  "/videos"."//".$user_id;
+            $dir_name =  "/usr/share/nginx/html/gymholicservices/public/videos"."/".$user_id;
             if (!is_dir($dir_name)) {
-                @mkdir($dir_name, "0777", true);
+                @mkdir($dir_name);
             }
 
             $current_timestamp  = Carbon::now()->timestamp;
