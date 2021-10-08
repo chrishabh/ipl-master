@@ -34,6 +34,7 @@ use Illuminate\Support\Facades\Route;
                 Route::post('get-wages-excel','WagesBookingController@getWagesExcel');
 
                 Route::post('upload-videos','VideosController@uploadVideo');
+                Route::post('get-videos-list','VideosController@getVideosList');
                 Route::post('download-videos','VideosController@downloadVideo');
            // });
             

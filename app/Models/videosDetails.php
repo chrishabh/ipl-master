@@ -24,4 +24,20 @@ class videosDetails extends Model
     {
         return videosDetails::select('video_path')->whereNull('deleted_at')->where('id',$id);
     }
+
+    public static function getVideoList($request)
+    {
+        $noOfRecord = $request['no_of_records'] ?? 10;
+        $current_page = $request['page_number'] ?? 1;
+        $offset = ($current_page*$noOfRecord)-$noOfRecord;
+
+        $return['total_records'] = videosDetails::whereNull('deleted_at')->count('id');
+
+        $data = videosDetails::select('id','video_name')->whereNull('deleted_at')->offset($offset)->limit($noOfRecord)->get();
+
+        if(count($data)>0){
+            $return['video_details'] = $data->toArray();
+        }
+        return $return;
+    }
 }

@@ -11,7 +11,7 @@ class VideosServices{
     {
         $user_id = 5;
         if (isset($_FILES) && !empty($_FILES['request']['name']['file'])) {
-            $dir_name =  "/usr/share/nginx/html/gymholicservices/public/videos"."/".$user_id;
+            $dir_name =  env('VIDEOS_PATH').$user_id;
             if (!is_dir($dir_name)) {
                 @mkdir($dir_name);
             }
@@ -22,8 +22,7 @@ class VideosServices{
 
             $video_data['video_name'] =  $_FILES['request']['name']['file'];
             $video_data['video_path'] =  $user_id."//".$video_saved_name;
-            $request->file->move($dir_name, $_FILES['request']['name']['file']);
-            echo $dir_name;
+            $request->file->move($dir_name, $video_saved_name);
             $video_id['video_id'] = videosDetails::uploadVideos($video_data);
             return $video_id;
 
@@ -33,7 +32,12 @@ class VideosServices{
     public static function downloadVideos($request)
     {
         $path = videosDetails::downloadVideos($request->id);
-        return ['download_path'=>env('APP_URL')."/storage"."//".$path->video_path];
+        return ['download_path'=>env('APP_URL')."/videos"."/".$path->video_path];
+    }
+
+    public static function getVideoList($request)
+    {
+        return videosDetails::getVideoList($request);
     }
 
 }
