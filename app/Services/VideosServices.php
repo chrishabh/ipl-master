@@ -19,7 +19,7 @@ class VideosServices{
             $current_timestamp  = Carbon::now()->timestamp;
             $video_saved_name = $current_timestamp . $_FILES['request']['name']['file'];
             
-
+            $video_data['video_name'] =  $user_id;
             $video_data['video_name'] =  $_FILES['request']['name']['file'];
             $video_data['video_path'] =  $user_id."//".$video_saved_name;
             $request->file->move($dir_name, $video_saved_name);

@@ -2,10 +2,9 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProjectDetailsTable extends Migration
+class CreateVideosDetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +13,11 @@ class CreateProjectDetailsTable extends Migration
      */
     public function up()
     {
-        Schema::create('project_details', function (Blueprint $table) {
+        Schema::create('videos_details', function (Blueprint $table) {
             $table->id();
-            $table->string('project_name');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('video_name');
+            $table->string('video_path');
             $table->softDeletes();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
@@ -30,6 +31,6 @@ class CreateProjectDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_details');
+        Schema::dropIfExists('videos_details');
     }
 }

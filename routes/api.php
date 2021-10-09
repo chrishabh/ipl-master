@@ -22,16 +22,16 @@ use Illuminate\Support\Facades\Route;
 
         Route::group(['namespace' => 'Api\Auth'], function () {
            // Route::group(['middleware' => ['auth:api']], function () {
-                Route::post('get-project-details','ConstructionDetailsController@getProjectDetails');
-                Route::post('get-block-details','ConstructionDetailsController@getBlockDetails');
-                Route::post('get-apartment-details','ConstructionDetailsController@getApartmentDetails');
-                Route::post('get-construction-details','ConstructionDetailsController@getConstructionDetails');
-                Route::post('get-description-work','ConstructionDetailsController@getDescriptionWork');
+                // Route::post('get-project-details','ConstructionDetailsController@getProjectDetails');
+                // Route::post('get-block-details','ConstructionDetailsController@getBlockDetails');
+                // Route::post('get-apartment-details','ConstructionDetailsController@getApartmentDetails');
+                // Route::post('get-construction-details','ConstructionDetailsController@getConstructionDetails');
+                // Route::post('get-description-work','ConstructionDetailsController@getDescriptionWork');
 
-                // wages booking
-                Route::post('book-wages','WagesBookingController@bookWages');
-                Route::post('get-wages','WagesBookingController@getWages');
-                Route::post('get-wages-excel','WagesBookingController@getWagesExcel');
+                // // wages booking
+                // Route::post('book-wages','WagesBookingController@bookWages');
+                // Route::post('get-wages','WagesBookingController@getWages');
+                // Route::post('get-wages-excel','WagesBookingController@getWagesExcel');
 
                 Route::post('upload-videos','VideosController@uploadVideo');
                 Route::post('get-videos-list','VideosController@getVideosList');
