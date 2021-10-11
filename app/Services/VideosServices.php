@@ -37,7 +37,14 @@ class VideosServices{
 
     public static function getVideoList($request)
     {
-        return videosDetails::getVideoList($request);
+        $data = videosDetails::getVideoList($request);
+
+        foreach($data['video_details'] as &$value)
+        {
+            $value['video_path'] = env('APP_URL')."/videos"."/".$value['video_path'];
+        }
+
+        return $data;
     }
 
 }
