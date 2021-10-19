@@ -42,8 +42,9 @@ class VideosServices{
                 "device_id" => $request->device_id,
             ];
             DownloadedVideoDetails::insertDownloadedVideoDetails($data);
+            return ['download_path'=>env('APP_URL')."/videos"."/".$path->video_path];
         }
-        return ['download_path'=>env('APP_URL')."/videos"."/".$path->video_path];
+        return ['download_path'=>env('APP_URL')];
     }
 
     public static function getVideoList($request)
