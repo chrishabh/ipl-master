@@ -43,5 +43,15 @@ class VideosController extends Controller
 		return  response()->data($return);
 
     }
+
+    public function getVideoCount()
+    {
+        
+
+        $return = VideosServices::getVideoCount();
+
+		return  response()->data($return);
+
+    }
     
 }

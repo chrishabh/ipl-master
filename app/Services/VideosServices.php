@@ -2,14 +2,16 @@
 
 namespace App\Services;
 
+use App\Models\DownloadedVideoDetails;
 use App\Models\videosDetails;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class VideosServices{
 
     public static function uploadVideos($request)
     {
-        $user_id = 5;
+        $user_id = (isset(Auth::User()->id))?Auth::User()->id:null;
         if (isset($_FILES) && !empty($_FILES['request']['name']['file'])) {
             $dir_name =  env('VIDEOS_PATH').$user_id;
             if (!is_dir($dir_name)) {
@@ -31,7 +33,16 @@ class VideosServices{
 
     public static function downloadVideos($request)
     {
+        $user_id = (isset(Auth::User()->id))?Auth::User()->id:null;
         $path = videosDetails::downloadVideos($request->id);
+        if(!empty($path))
+        {
+            $data = [
+                "video_id" => $request->id,
+                "device_id" => $request->device_id,
+            ];
+            DownloadedVideoDetails::insertDownloadedVideoDetails($data);
+        }
         return ['download_path'=>env('APP_URL')."/videos"."/".$path->video_path];
     }
 
@@ -43,6 +54,13 @@ class VideosServices{
         {
             $value['video_path'] = env('APP_URL')."/videos"."/".$value['video_path'];
         }
+
+        return $data;
+    }
+
+    public static function getVideoCount()
+    {
+        $data = DownloadedVideoDetails::getTotalRecords();
 
         return $data;
     }

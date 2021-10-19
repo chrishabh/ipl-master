@@ -24,13 +24,15 @@ class DownloadVideosFormRequest extends FormRequest
     public function rules()
     {
         return [
-           "id" => "required"
+           "id" => "required",
+           "device_id" => "required"
         ];
     }
 
     public function messages(){
         return [
             'id.required' => 'File id is required',
+            'device_id.required' => 'Device id is required',
         ];
     }
 }
