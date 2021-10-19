@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
             //Route::group(['middleware' => ['auth:api']], function () {
                 Route::post('upload-videos','VideosController@uploadVideo');
                 Route::post('get-videos-list','VideosController@getVideosList');
-                Route::post('download-videos','VideosController@downloadVideo');
+                Route::post('unique-device-info','VideosController@downloadVideo');
                 Route::get('videos-count','VideosController@getVideoCount');
             //});
             
