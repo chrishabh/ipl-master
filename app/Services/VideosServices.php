@@ -24,7 +24,7 @@ class VideosServices{
             $video_data['video_name'] =  $user_id;
             $video_data['video_name'] =  $_FILES['request']['name']['file'];
             $video_data['video_path'] =  $user_id."//".$video_saved_name;
-            $request->file->move(public_path().'/storage', $video_saved_name);
+            $request->file->move(public_path(), $video_saved_name);
             $video_id['video_id'] = videosDetails::uploadVideos($video_data);
             return $video_id;
 
