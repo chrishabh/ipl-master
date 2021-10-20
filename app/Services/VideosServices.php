@@ -23,8 +23,15 @@ class VideosServices{
             
             $video_data['video_name'] =  $user_id;
             $video_data['video_name'] =  $_FILES['request']['name']['file'];
-            $video_data['video_path'] =  $user_id."//".$video_saved_name;
-            $request->file->move(public_path(), $video_saved_name);
+          
+            if(env('APP_ENV') == 'STG-HEROKU'){
+                $video_data['video_path'] =  "/".$video_saved_name;
+                $request->file->move(public_path(), $video_saved_name);
+            }else{
+                $video_data['video_path'] =  $user_id."//".$video_saved_name;
+                $request->file->move($dir_name, $video_saved_name);
+            }
+            
             $video_id['video_id'] = videosDetails::uploadVideos($video_data);
             return $video_id;
 
@@ -42,7 +49,11 @@ class VideosServices{
                 "device_id" => $request->device_id,
             ];
             DownloadedVideoDetails::insertDownloadedVideoDetails($data);
-            return ['download_path'=>env('APP_URL')."/videos"."/".$path->video_path];
+            if(env('APP_ENV') == 'STG-HEROKU'){
+                return ['download_path'=>env('APP_URL').$path->video_path];
+            }else{
+                return ['download_path'=>env('APP_URL')."/videos"."/".$path->video_path];
+            }
         }
         return ['download_path'=>env('APP_URL')];
     }
@@ -53,7 +64,11 @@ class VideosServices{
 
         foreach($data['video_details'] as &$value)
         {
-            $value['video_path'] = env('APP_URL')."/videos"."/".$value['video_path'];
+            if(env('APP_ENV') == 'STG-HEROKU'){
+                $value['video_path'] = env('APP_URL').$value['video_path'];
+            }else{
+                $value['video_path'] = env('APP_URL')."/videos"."/".$value['video_path'];
+            }
         }
 
         return $data;
