@@ -47,6 +47,8 @@ class VideosServices{
             $data = [
                 "video_id" => $request->id,
                 "device_id" => $request->device_id,
+                "serial_number" => $request->serial_number,
+                "andriod_id" => $request->andriod_id,
             ];
             DownloadedVideoDetails::insertDownloadedVideoDetails($data);
             if(env('APP_ENV') == 'STG-HEROKU'){
@@ -64,6 +66,7 @@ class VideosServices{
 
         foreach($data['video_details'] as &$value)
         {
+            $value['viewers_count'] = DownloadedVideoDetails::getViewersOfVideo($value['id']);
             if(env('APP_ENV') == 'STG-HEROKU'){
                 $value['video_path'] = env('APP_URL').$value['video_path'];
             }else{

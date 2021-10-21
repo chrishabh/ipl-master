@@ -35,7 +35,7 @@ class videosDetails extends Model
 
         $return['total_records'] = videosDetails::whereNull('deleted_at')->count('id');
 
-        $data = videosDetails::select('id','video_name','video_path')->whereNull('deleted_at')->where('user_id',$user_id)->offset($offset)->limit($noOfRecord)->get();
+        $data = videosDetails::select('id','video_name','video_path')->whereNull('deleted_at')->offset($offset)->limit($noOfRecord)->get();
         $return['video_details'] = [];
         if(count($data)>0){
             $return['video_details'] = $data->toArray();

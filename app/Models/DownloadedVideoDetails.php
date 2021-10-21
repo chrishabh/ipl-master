@@ -38,4 +38,9 @@ class DownloadedVideoDetails extends Model
 
         return $return;
     }
+
+    public static function getViewersOfVideo($video_id)
+    {
+        return DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$video_id)->count('id');
+    }
 }

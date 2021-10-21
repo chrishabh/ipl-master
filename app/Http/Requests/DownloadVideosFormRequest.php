@@ -25,7 +25,9 @@ class DownloadVideosFormRequest extends FormRequest
     {
         return [
            "id" => "required",
-           "device_id" => "required"
+           "device_id" => "required",
+           "serial_number" => "required",
+           "andriod_id" => "required"
         ];
     }
 
@@ -33,6 +35,8 @@ class DownloadVideosFormRequest extends FormRequest
         return [
             'id.required' => 'File id is required',
             'device_id.required' => 'Device id is required',
+            'serial_number.required' => 'Serial number is required',
+            'andriod_id.required' => 'Andriod id is required',
         ];
     }
 }
