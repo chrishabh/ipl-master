@@ -6,6 +6,7 @@ use App\Http\Requests\LoginFormRequest;
 use App\Http\Requests\RegisterFormRequest;
 use App\Services\UserServices;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\LaunchApplicationFormRequest;
 use App\Http\Requests\SignUpFormRequest;
 use GuzzleHttp\Psr7\Request as Psr7Request;
 use Illuminate\Http\Client\Request as ClientRequest;
@@ -36,12 +37,13 @@ class UserController extends Controller
 
     }
 
-    public static function test()
+    public function launchApplication(LaunchApplicationFormRequest $request)
     {
+        $requestData = $request->validated();
 
-        
-        return  response()->data(['user'=>"data",'client' => "rishabh"]);
+        $user = new UserServices();
+        $user->launchApplication($requestData);
 
+        return  response()->success();
     }
-    
 }

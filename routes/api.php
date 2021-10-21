@@ -25,7 +25,8 @@ use Illuminate\Support\Facades\Route;
                 Route::post('upload-videos','VideosController@uploadVideo');
                 Route::post('get-videos-list','VideosController@getVideosList');
                 Route::post('unique-device-info','VideosController@downloadVideo');
-                Route::get('videos-count','VideosController@getVideoCount');
+                Route::get('launch-count','VideosController@getApplicationLaunchCount');
+                Route::post('launch-application','UserController@launchApplication');
             //});
             
         });

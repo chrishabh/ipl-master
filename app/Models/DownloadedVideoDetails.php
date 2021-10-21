@@ -43,4 +43,8 @@ class DownloadedVideoDetails extends Model
     {
         return DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$video_id)->count('id');
     }
+
+    public static function getTotalCountViewedVideo($current_date){
+        return DownloadedVideoDetails::whereNull('deleted_at')->whereRaw("cast(created_at as date) = '$current_date'")->count('id');
+    }
 }

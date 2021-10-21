@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\ApplicationLaunchedDetails;
 use App\Models\DownloadedVideoDetails;
 use App\Models\videosDetails;
 use Carbon\Carbon;
@@ -77,10 +78,10 @@ class VideosServices{
         return $data;
     }
 
-    public static function getVideoCount()
+    public static function getAppLaunchCount()
     {
-        $data = DownloadedVideoDetails::getTotalRecords();
-
+        $data['app_launch_count'] = ApplicationLaunchedDetails::getAppLaunchCount();
+        $data['total_video_views'] = DownloadedVideoDetails::getTotalCountViewedVideo(date("Y-m-d"));
         return $data;
     }
 

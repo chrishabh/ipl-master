@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Exceptions\AppException;
 use App\Exceptions\BusinessExceptions\RegisterFailedException;
+use App\Models\ApplicationLaunchedDetails;
 use Illuminate\Console\Application;
 
 class UserServices{
@@ -49,6 +50,11 @@ class UserServices{
             // }
         }
 
+    }
+
+    public static function launchApplication($request)
+    {
+        ApplicationLaunchedDetails::insertApplicationDetails($request);
     }
 
 }

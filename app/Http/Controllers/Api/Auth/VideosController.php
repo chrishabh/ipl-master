@@ -44,11 +44,11 @@ class VideosController extends Controller
 
     }
 
-    public function getVideoCount()
+    public function getApplicationLaunchCount()
     {
         
 
-        $return = VideosServices::getVideoCount();
+        $return = VideosServices::getAppLaunchCount();
 
 		return  response()->data($return);
 
