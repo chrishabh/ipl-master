@@ -16,6 +16,8 @@ class CreateApplicationLaunchedDetailsTable extends Migration
         Schema::create('application_launched_details', function (Blueprint $table) {
             $table->id();
             $table->string('device_id');
+            $table->string('serial_number');
+            $table->string('andriod_id');
             $table->softDeletes();
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
