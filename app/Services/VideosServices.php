@@ -47,9 +47,9 @@ class VideosServices{
         {
             $data = [
                 "video_id" => $request->id,
-                "device_id" => $request->device_id,
-                "serial_number" => $request->serial_number,
-                "andriod_id" => $request->andriod_id,
+                "device_id" => $request->device_id??NULL,
+                "serial_number" => $request->serial_number??NULL,
+                "andriod_id" => $request->andriod_id??NULL,
             ];
             DownloadedVideoDetails::insertDownloadedVideoDetails($data);
             if(env('APP_ENV') == 'STG-HEROKU'){

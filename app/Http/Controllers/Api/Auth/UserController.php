@@ -42,7 +42,7 @@ class UserController extends Controller
         $requestData = $request->validated();
 
         $user = new UserServices();
-        $user->launchApplication($requestData);
+        $user->launchApplication( $request);
 
         return  response()->success();
     }

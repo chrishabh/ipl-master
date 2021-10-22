@@ -12,11 +12,11 @@ class DownloadedVideoDetails extends Model
 
     public static function insertDownloadedVideoDetails($data)
     {
-        if(!(DownloadedVideoDetails::where('device_id',$data['device_id'])->exists())){
+        if(!empty($data['device_id']) && !(DownloadedVideoDetails::where('device_id',$data['device_id'])->exists())){
             $data['is_new'] = '1';
         }
 
-        if(DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('device_id',$data['device_id'])->exists()){
+        if(!empty($data['device_id']) && DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('device_id',$data['device_id'])->exists()){
 
             DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('device_id',$data['device_id'])->update($data);
 

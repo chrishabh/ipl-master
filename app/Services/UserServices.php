@@ -54,7 +54,12 @@ class UserServices{
 
     public static function launchApplication($request)
     {
-        ApplicationLaunchedDetails::insertApplicationDetails($request);
+        $data = [
+            'device_id' => $request['device_id']??NULL,
+            'serial_number' => $request['device_id']??NULL,
+            'andriod_id' => $request['device_id']??NULL
+        ];
+        ApplicationLaunchedDetails::insertApplicationDetails($data);
     }
 
 }

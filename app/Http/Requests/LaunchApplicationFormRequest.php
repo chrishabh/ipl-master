@@ -24,18 +24,13 @@ class LaunchApplicationFormRequest extends FormRequest
     public function rules()
     {
         return [
-            "device_id" => "required",
-           "serial_number" => "required",
-           "andriod_id" => "required"
+          
         ];
     }
 
     public function messages(){
         return [
             #'id.required' => 'File id is required',
-            'device_id.required' => 'Device id is required',
-            'serial_number.required' => 'Serial number is required',
-            'andriod_id.required' => 'Andriod id is required',
         ];
     }
 }

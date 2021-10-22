@@ -16,7 +16,7 @@ class CreateDownloadedVideoDetailsTable extends Migration
         Schema::create('downloaded_video_details', function (Blueprint $table) {
             $table->id();
             $table->string('video_id');
-            $table->string('device_id');
+            $table->string('device_id')->nullable();
             $table->enum('is_new',[0,1])->default(0);
             $table->softDeletes();
             $table->timestamp('created_at')->useCurrent();
