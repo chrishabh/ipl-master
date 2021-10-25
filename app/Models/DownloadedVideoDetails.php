@@ -12,18 +12,60 @@ class DownloadedVideoDetails extends Model
 
     public static function insertDownloadedVideoDetails($data)
     {
-        if(!empty($data['device_id']) && !(DownloadedVideoDetails::where('device_id',$data['device_id'])->exists())){
-            $data['is_new'] = '1';
+
+        if(!empty($data['device_id']) && !empty($data['andriod_id']) && !empty($data['serial_number']))
+        {
+            if(DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('device_id',$data['device_id'])->where('andriod_id',$data['andriod_id'])->where('serial_number',$data['serial_number'])->exists())
+            {
+                return DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('device_id',$data['device_id'])->where('andriod_id',$data['andriod_id'])->where('serial_number',$data['serial_number'])->update($data);
+            }else{
+                return DownloadedVideoDetails::insert($data);
+            }
         }
+        // } elseif(!empty($data['device_id']) && !empty($data['andriod_id'])){
+        //     if(DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('device_id',$data['device_id'])->where('andriod_id',$data['andriod_id'])->exists())
+        //     {
+        //         return DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('device_id',$data['device_id'])->where('andriod_id',$data['andriod_id'])->update($data);
+        //     }else{
+        //         return DownloadedVideoDetails::insert($data);
+        //     }
+        // } elseif (!empty($data['andriod_id']) && !empty($data['serial_number'])){
 
-        if(!empty($data['device_id']) && DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('device_id',$data['device_id'])->exists()){
+        //     if(DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('andriod_id',$data['andriod_id'])->where('serial_number',$data['serial_number'])->exists())
+        //     {
+        //         return DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('andriod_id',$data['andriod_id'])->where('serial_number',$data['serial_number'])->update($data);
+        //     }else{
+        //         return DownloadedVideoDetails::insert($data);
+        //     }
 
-            DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('device_id',$data['device_id'])->update($data);
+        // } elseif (!empty($data['serial_number']) && !empty($data['device_id'])) {
 
-        }else{
-            DownloadedVideoDetails::insert($data);
+        //     if(DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('device_id',$data['device_id'])->where('serial_number',$data['serial_number'])->exists())
+        //     {
+        //         return DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('device_id',$data['device_id'])->where('serial_number',$data['serial_number'])->update($data);
+        //     } else {
+        //         return DownloadedVideoDetails::insert($data);
+        //     }
+
+        // } 
+        else {
+            if( !empty($data['device_id']) && DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('device_id',$data['device_id'])->exists()){
+
+               return DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('device_id',$data['device_id'])->update($data);
+
+            } elseif (!empty($data['serial_number']) && DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('serial_number',$data['serial_number'])->exists()) {
+
+              return DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('serial_number',$data['serial_number'])->update($data);
+
+            }else if (!empty($data['andriod_id']) && DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('andriod_id',$data['andriod_id'])->exists()) {
+
+              return DownloadedVideoDetails::whereNull('deleted_at')->where('video_id',$data['video_id'])->where('andriod_id',$data['andriod_id'])->update($data);
+
+            } else {
+                return DownloadedVideoDetails::insert($data);
+            }
+
         }
-        
     }
 
     public static function getTotalRecords()
