@@ -35,7 +35,7 @@ class ApplicationLaunchedDetails extends Model
               return ApplicationLaunchedDetails::whereNull('deleted_at')->where('andriod_id',$data['andriod_id'])->update($data);
 
             } else {
-                return ApplicationLaunchedDetails::insert($data);
+                //return ApplicationLaunchedDetails::insert($data);
             }
 
         }
